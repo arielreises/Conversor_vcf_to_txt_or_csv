@@ -41,6 +41,8 @@ def clean_phone(phone):
         return f"{cleaned_phone[1:]}"
     elif len(cleaned_phone) == 9:  # Verifica se consta o DDD
         return f"{cleaned_phone} - Telefone sem DDD"
+    elif len(cleaned_phone) == 10:  # Verifica se tem todos os digitos
+        return f"{cleaned_phone} - Telefone sem o 9 na frente"
 
     return cleaned_phone
 
@@ -65,7 +67,7 @@ def save_or_open_file(save_and_open=False):
 
     output_folder = os.path.dirname(vcf_file_path)  # Usa o diretório do arquivo selecionado como destino
     os.makedirs(output_folder, exist_ok=True)
-    output_file = f"contatos_{client_name}.{output_format.lower()}"
+    output_file = f"contatos_{client_name}{output_format.lower()}"
 
     try:
         output_path = os.path.join(output_folder, output_file)
